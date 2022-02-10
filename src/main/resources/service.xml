@@ -7,6 +7,7 @@
     <!-- services -->
 
     <bean id="rectangle" class="com.seu.spring.Rectangle">
+        <property name="id" value="0"/>
         <property name="width" value="2"/>
         <property name="length" value="3"/>
         <!-- additional collaborators and configuration for this bean go here -->
