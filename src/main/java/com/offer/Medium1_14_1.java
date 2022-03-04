@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.offer;
 
 /**
  * @author slowdive
@@ -32,10 +32,10 @@ package com.leetcode;
 // 注意：本题与主站 343 题相同：https://leetcode-cn.com/problems/integer-break/
 // Related Topics 数学 动态规划 👍 374 👎 0
 
-public class MediumOffer14_1 {
+public class Medium1_14_1 {
 
     public static void main(String[] args) {
-        System.out.println(new MediumOffer14_1().cuttingRope(11));
+        System.out.println(new Medium1_14_1().cuttingRope(11));
     }
 
     public int cuttingRope(int n) {
