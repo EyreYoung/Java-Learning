@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--当前项目在整个分布式架构里面的唯一名称，计算依赖关系的标签-->
+    <dubbo:application name="provider" owner="yyd">
+        <dubbo:parameter key="qos.enable" value="true"/>
+        <dubbo:parameter key="qos.accept.foreign.ip" value="false"/>
+        <dubbo:parameter key="qos.port" value="55555"/>
+    </dubbo:application>
+
+    <dubbo:monitor protocol="registry"/>
+
+    <!--dubbo这个服务所要暴露的服务地址所对应的注册中心-->
+    <!--<dubbo:registry address="N/A"/>-->
+    <dubbo:registry address="N/A" />
+
+    <!--当前服务发布所依赖的协议；webserovice、Thrift、Hessain、http-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!--服务发布的配置，需要暴露的服务接口-->
+    <dubbo:service
+            interface="com.dubbo.DubboProviderService"
+            ref="providerService"/>
+
+    <!--Bean bean定义-->
+    <bean id="providerService" class="com.dubbo.DubboProviderServiceImpl"/>
+
+</beans>
