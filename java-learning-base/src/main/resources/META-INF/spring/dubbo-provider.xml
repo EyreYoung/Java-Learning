@@ -24,9 +24,9 @@
     <!--服务发布的配置，需要暴露的服务接口-->
     <dubbo:service
             interface="com.dubbo.DubboProviderService"
-            ref="providerService"/>
+            ref="dubboProviderService"/>
 
     <!--Bean bean定义-->
-    <bean id="providerService" class="com.dubbo.DubboProviderServiceImpl"/>
+    <bean id="dubboProviderService" class="com.dubbo.DubboProviderServiceImpl"/>
 
 </beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--当前项目在整个分布式架构里面的唯一名称，计算依赖关系的标签-->
+    <dubbo:application name="consumer" owner="yyd"/>
+
+    <!--dubbo这个服务所要暴露的服务地址所对应的注册中心-->
+    <!--点对点的方式-->
+    <dubbo:registry address="N/A" />
+    <!--<dubbo:registry address="zookeeper://localhost:2181" check="false"/>-->
+
+    <!--生成一个远程服务的调用代理-->
+    <!--点对点方式-->
+    <dubbo:reference id="dubboProviderService"
+                     interface="com.dubbo.DubboProviderService"
+                     url="dubbo://10.33.166.69:20880/com.dubbo.DubboProviderService"/>
+
+
+</beans>
