@@ -13,6 +13,10 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(foo(new int[]{1, 2, 3, 4, 5}, new int[]{3, 4, 5, 1, 2}));
+
+        if (3 > 1)
+        System.out.println("s");
+        System.out.println("end");
     }
 
     public static int foo(int[] gas, int[] cost) {
