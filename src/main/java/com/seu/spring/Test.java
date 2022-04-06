@@ -14,6 +14,7 @@ public class Test {
         ApplicationContext ac = new ClassPathXmlApplicationContext("service.xml");
         Rectangle rectangle1 = ac.getBean("rectangle", Rectangle.class);
         Rectangle rectangle2 = ac.getBean("rectangle", Rectangle.class);
+        log.debug(String.valueOf(rectangle1));
         log.debug(String.valueOf(rectangle1 == rectangle2));
     }
 }
