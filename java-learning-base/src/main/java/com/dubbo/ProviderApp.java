@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * @author slowdive
- * @summary Dubbo服务提供
+ * @summary dubbo服务者XML方式配置
  * @Copyright (c) 2022, Lianjia Group All Rights Reserved.
  * @since 2022/4/6
  */

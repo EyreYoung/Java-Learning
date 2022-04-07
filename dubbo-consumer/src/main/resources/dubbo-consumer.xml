@@ -9,14 +9,18 @@
 
     <!--dubbo这个服务所要暴露的服务地址所对应的注册中心-->
     <!--点对点的方式-->
-    <dubbo:registry address="N/A" />
-    <!--<dubbo:registry address="zookeeper://localhost:2181" check="false"/>-->
+    <!--不使用zookeeper作为注册中心时填N/A就好-->
+    <!--<dubbo:registry address="N/A" />-->
+    <dubbo:registry address="zookeeper://localhost:2181" check="false"/>
 
     <!--生成一个远程服务的调用代理-->
     <!--点对点方式-->
+    <!--使用zookeeper作为注册中心时，不再需要provider的url-->
+<!--    <dubbo:reference id="dubboProviderService"-->
+<!--                     interface="com.dubbo.DubboProviderService"-->
+<!--                     url="dubbo://10.33.166.69:20880/com.dubbo.DubboProviderService"/>-->
     <dubbo:reference id="dubboProviderService"
-                     interface="com.dubbo.DubboProviderService"
-                     url="dubbo://10.33.166.69:20880/com.dubbo.DubboProviderService"/>
+                     interface="com.dubbo.DubboProviderService"/>
 
 
 </beans>
