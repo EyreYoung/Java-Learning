@@ -1,0 +1,12 @@
+spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+      key-prefix: test_
+      use-key-prefix: true
+      cache-null-values: true
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
