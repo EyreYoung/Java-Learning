@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author slowdive
- * @summary
+ * @summary ZooKeeper分布式锁
  * @Copyright (c) 2022, Lianjia Group All Rights Reserved.
  * @since 2022/2/11
  */
@@ -21,10 +21,11 @@ public class ZooKeeperSession {
     public static void main(String[] args) {
         ZooKeeperSession.init();
         ZooKeeperSession session = new ZooKeeperSession();
-        Boolean f1 = session.acquireDistributedLock(10L);
+        Boolean f1 = session.acquireDistributedLock(11L);
         log.debug("f1 = {}", f1);
-        session.releaseDistributedLock(10L);
+        session.releaseDistributedLock(11L);
         Boolean f2 = session.acquireDistributedLock(11L);
+        session.releaseDistributedLock(11L);
         log.debug("f2 = {}", f2);
     }
 
@@ -93,7 +94,7 @@ public class ZooKeeperSession {
     private class ZooKeeperWatcher implements Watcher {
 
         public void process(WatchedEvent event) {
-            log.info("接收到watch中的event：{}", event.getState());
+            log.info("接收到watch中的event：{}", event);
 
             if (Event.KeeperState.SyncConnected == event.getState()) {
                 connectSemaphore.countDown();
@@ -108,7 +109,8 @@ public class ZooKeeperSession {
     }
 
     private static class Singleton {
-        private static ZooKeeperSession instance;
+        private static final ZooKeeperSession instance;
+
         static {
             instance = new ZooKeeperSession();
         }
