@@ -22,6 +22,12 @@
         <spring.version>5.3.18</spring.version>
     </properties>
 
+    <modules>
+        <module>java-learning-base</module>
+        <module>dubbo-consumer</module>
+        <module>spring-learning</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
