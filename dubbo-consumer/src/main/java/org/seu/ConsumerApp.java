@@ -22,5 +22,6 @@ public class ConsumerApp {
         String s = service.sayHello("yyd");
         System.out.println(s);
         System.in.read();
+        context.close();
     }
 }

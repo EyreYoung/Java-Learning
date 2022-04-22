@@ -3,6 +3,7 @@
 
 # Log file
 *.log
+.DS_Store
 
 # BlueJ files
 *.ctxt
@@ -23,3 +24,4 @@
 hs_err_pid*
 /target/
 /.idea/
+/.vscode/
