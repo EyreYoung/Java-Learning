@@ -42,10 +42,11 @@ public class KafkaFactory<K, V> {
         properties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         properties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
         properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
+        properties.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, 300000); // 定期去更新MetaData的时间间隔
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                "org.apache.kafka.common.serialization.StringSerializer");
+                "org.apache.kafka.common.serialization.StringSerializer"); // key的序列化器
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                "org.apache.kafka.common.serialization.StringSerializer");
+                "org.apache.kafka.common.serialization.StringSerializer"); // value的序列化器
 
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
