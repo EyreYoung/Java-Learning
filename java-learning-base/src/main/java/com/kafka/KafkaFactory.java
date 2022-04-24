@@ -7,6 +7,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.internals.Sender;
+import org.apache.kafka.clients.producer.internals.TransactionManager;
 
 import java.util.Properties;
 
@@ -38,11 +40,14 @@ public class KafkaFactory<K, V> {
         Properties properties = new Properties();
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
         properties.put(ProducerConfig.ACKS_CONFIG, "all");
-        properties.put(ProducerConfig.RETRIES_CONFIG, 0);
+        properties.put(ProducerConfig.RETRIES_CONFIG, 3);
         properties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         properties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
         properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
         properties.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, 300000); // 定期去更新MetaData的时间间隔
+        properties.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "zstd"); // 压缩算法
+        // 可以保证单Partition消息幂等，单会话的消息幂等
+        properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true); // 开启幂等性
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringSerializer"); // key的序列化器
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
@@ -58,6 +63,12 @@ public class KafkaFactory<K, V> {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringDeserializer");
 
+        /**
+         * 创建KafkaProducer后会开启一个Sender线程{@link Sender#run()}
+         * 如果开启了幂等性{@link ProducerConfig#ENABLE_IDEMPOTENCE_CONFIG}
+         * 则会给发出的每个消息附上producerId和sequenceId{@link TransactionManager#bumpIdempotentEpochAndResetIdIfNeeded()}
+         * 避免发送消息没收到ack 重试后在broker写入两条
+         */
         producer = new KafkaProducer<>(properties);
         consumer = new KafkaConsumer<>(properties);
     }
