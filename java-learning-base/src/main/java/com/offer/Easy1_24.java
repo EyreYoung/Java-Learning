@@ -57,7 +57,6 @@ public class Easy1_24 {
 
     public static ListNode reverseListByN(ListNode head, int x) {
         if (head == null) return null;
-        ListNode start = head;
         ListNode pre = null;
         ListNode p = head;
         ListNode post = p.next;
@@ -72,7 +71,7 @@ public class Easy1_24 {
             x--;
 
         }
-        start.next = post;
+        head.next = post;
         p.next = pre;
         return p;
     }
