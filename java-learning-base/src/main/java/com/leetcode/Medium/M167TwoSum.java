@@ -62,15 +62,14 @@ public class M167TwoSum {
     }
 
     public int[] twoSum(int[] numbers, int target) {
-        int i = 0, j = numbers.length - 1;
-        while (i < j) {
-            int ii = numbers[i], jj = numbers[j];
-            if (ii + jj > target) {
-                j--;
-            } else if (ii + jj < target) {
-                i++;
+        int left = 0, right = numbers.length - 1;
+        while (left < right) {
+            if (numbers[left] + numbers[right] > target) {
+                right--;
+            } else if (numbers[left] + numbers[right] < target) {
+                left++;
             } else {
-                return new int[]{i + 1, j + 1};
+                return new int[]{left + 1, right + 1};
             }
         }
         return new int[]{-1, -1};
