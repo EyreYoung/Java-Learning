@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.leetcode.Easy;
 
 /**
  * @author slowdive
