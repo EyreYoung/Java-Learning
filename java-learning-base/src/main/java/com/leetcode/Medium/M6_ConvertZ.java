@@ -66,10 +66,10 @@ import java.util.Map;
  * @since 2022/3/1
  */
 
-public class Medium6 {
+public class M6_ConvertZ {
 
     public static void main(String[] args) {
-        System.out.println(new Medium6().convert2("PAYPALISHIRING", 4));
+        System.out.println(new M6_ConvertZ().convert2("PAYPALISHIRING", 4));
     }
 
     public String convert(String s, int numRows) {

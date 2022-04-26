@@ -1,5 +1,7 @@
 package com.leetcode.Medium;
 
+import com.google.common.base.Stopwatch;
+
 import java.util.Objects;
 
 /**
@@ -36,10 +38,46 @@ import java.util.Objects;
 // s 仅由数字和英文字母组成
 //
 // Related Topics 字符串 动态规划 👍 5127 👎 0
-public class Medium5 {
+public class M5_LongestPalindrome {
 
     public static void main(String[] args) {
-        System.out.println(new Medium5().longestPalindrome("77763475638439465734634782323424352343245234"));
+        Stopwatch sw = Stopwatch.createStarted();
+        System.out.println(new M5_LongestPalindrome().longestPalindrome("777634756384394657346347823234243523432452344564356456345746723485734853274627238172831203874182374128371283741283471208374102983741283123412351231312351235121234554321575346245654674563675467567435745734573"));
+        sw.stop();
+        System.out.println(sw);
+        sw.reset();
+        sw.start();
+        System.out.println(new M5_LongestPalindrome().longestPalindrome2("777634756384394657346347823234243523432452344564356456345746723485734853274627238172831203874182374128371283741283471208374102983741283123412351231312351235121234554321575346245654674563675467567435745734573"));
+        sw.stop();
+        System.out.println(sw);
+    }
+
+    // 中心扩散寻找字符串以第l和第r元素为中心的最长回文子串
+    // l = r 说明是奇数个数，中心只有一个元素
+    public String palindrome(String s, int l, int r) {
+        while (l >= 0 && r < s.length()) {
+            if (s.charAt(l) != s.charAt(r)) {
+                break;
+            }
+            l--;
+            r++;
+        }
+        return s.substring(l + 1, r);
+    }
+
+    public String longestPalindrome2(String s) {
+        String ret = "";
+        for (int i = 0; i < s.length(); i++) {
+            String s1 = palindrome(s, i, i);
+            String s2 = palindrome(s, i, i + 1);
+            if (s1.length() > ret.length()) {
+                ret = s1;
+            }
+            if (s2.length() > ret.length()) {
+                ret = s2;
+            }
+        }
+        return ret;
     }
 
     // 暴力
