@@ -37,30 +37,31 @@ public class KafkaFactory<K, V> {
     }
 
     public KafkaFactory() {
-        Properties properties = new Properties();
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
-        properties.put(ProducerConfig.ACKS_CONFIG, "all");
-        properties.put(ProducerConfig.RETRIES_CONFIG, 3);
-        properties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
-        properties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
-        properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
-        properties.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, 300000); // 定期去更新MetaData的时间间隔
-        properties.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "zstd"); // 压缩算法
+        Properties producerProperties = new Properties();
+        producerProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
+        producerProperties.put(ProducerConfig.ACKS_CONFIG, "all");
+        producerProperties.put(ProducerConfig.RETRIES_CONFIG, 3);
+        producerProperties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
+        producerProperties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
+        producerProperties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
+        producerProperties.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, 300000); // 定期去更新MetaData的时间间隔
+        producerProperties.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "zstd"); // 压缩算法
         // 可以保证单Partition消息幂等，单会话的消息幂等
-        properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true); // 开启幂等性
-        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+        producerProperties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true); // 开启幂等性
+        producerProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringSerializer"); // key的序列化器
-        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+        producerProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringSerializer"); // value的序列化器
 
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
-        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
-        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 1000);
-        properties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+        Properties consumerProperties = new Properties();
+        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
+        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 1000);
+        consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringDeserializer");
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringDeserializer");
 
         /**
@@ -69,7 +70,7 @@ public class KafkaFactory<K, V> {
          * 则会给发出的每个消息附上producerId和sequenceId{@link TransactionManager#bumpIdempotentEpochAndResetIdIfNeeded()}
          * 避免发送消息没收到ack 重试后在broker写入两条
          */
-        producer = new KafkaProducer<>(properties);
-        consumer = new KafkaConsumer<>(properties);
+        producer = new KafkaProducer<>(producerProperties);
+        consumer = new KafkaConsumer<>(consumerProperties);
     }
 }
