@@ -55,10 +55,14 @@ public class KafkaFactory<K, V> {
 
         Properties consumerProperties = new Properties();
         consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
-        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "cg1");
         consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 1000);
         consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+        consumerProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 100); // 每次poll拉取数据的数量
+        consumerProperties.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 5000); // 期望的两次poll间隔时间
+        consumerProperties.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, 2000);
+
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringDeserializer");
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,

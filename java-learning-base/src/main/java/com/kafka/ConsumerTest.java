@@ -28,7 +28,7 @@ public class ConsumerTest {
         // 如果出现了新的topic符合正则表达式 立即触发分区再均衡 从而能够读取新topic
 //        consumer.subscribe(Pattern.compile("learning.*"));
 
-        manualCommitConsumeSyncAndAsync(consumer);
+        manualCommitConsumeSync(consumer);
 
         /**
          * {@link KafkaConsumer#wakeup()}是唯一可以从其他线程安全调用阻止consumer继续轮询的方法
@@ -71,12 +71,14 @@ public class ConsumerTest {
                 log.info("offset = {}, partition = {}, key = {}, value = {}",
                         record.offset(), record.partition(), record.key(), record.value());
             }
-
             try {
-                consumer.commitSync();
-            } catch (CommitFailedException e) {
-                log.error("消费提交失败 ", e);
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
+
+            consumer.commitSync();
+
 
         }
 
@@ -120,7 +122,7 @@ public class ConsumerTest {
 
                 consumer.commitAsync();
             }
-        } catch (Exception e) {
+        } catch (CommitFailedException e) {
             log.error("异步提交消费失败", e);
         } finally {
             try {

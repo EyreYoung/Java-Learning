@@ -18,7 +18,7 @@ public class ProducerTest {
         try {
             for (int i = 0; i < 100000; i++) {
                 String msg = "Message " + i;
-                producer.send(new ProducerRecord<>("learning", msg));
+                producer.send(new ProducerRecord<>("test", msg));
                 System.out.println("Sent: " + msg);
             }
         } catch (Exception e) {
