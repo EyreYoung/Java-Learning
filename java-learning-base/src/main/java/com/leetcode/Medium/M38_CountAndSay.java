@@ -8,9 +8,9 @@ import java.util.Stack;
  * @Copyright (c) 2021, Lianjia Group All Rights Reserved.
  * @since 2021/10/15
  */
-public class Medium38 {
+public class M38_CountAndSay {
     public static void main(String[] args) {
-        System.out.println(new Medium38().countAndSay(10));
+        System.out.println(new M38_CountAndSay().countAndSay(10));
     }
     public String countAndSay(int n) {
         if (n == 1) return "1";

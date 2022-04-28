@@ -47,9 +47,9 @@ import java.util.Arrays;
 // -10⁹ <= nums[i] <= 10⁹
 // nums 是一个非递减数组
 // -10⁹ <= target <= 10⁹
-public class Medium34 {
+public class M34_SearchRange {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new Medium34().searchRange(new int[]{5, 7, 7, 8, 8}, 8)));
+        System.out.println(Arrays.toString(new M34_SearchRange().searchRange(new int[]{5, 7, 7, 8, 8}, 8)));
     }
     public int[] searchRange(int[] nums, int target) {
         int i = 0;

@@ -9,9 +9,9 @@ import java.util.List;
  * @Copyright (c) 2021, Lianjia Group All Rights Reserved.
  * @since 2021/10/13
  */
-public class Easy412 {
+public class E412_FizzBuzz {
     public static void main(String[] args) {
-        System.out.println(new Easy412().fizzBuzz(20));
+        System.out.println(new E412_FizzBuzz().fizzBuzz(20));
     }
     public List<String> fizzBuzz(int n) {
         List<String> ret = new ArrayList<>();

@@ -41,10 +41,10 @@ package com.leetcode.Medium;
 // 2 <= n <= 10⁵
 // 0 <= height[i] <= 10⁴
 //
-public class Medium11 {
+public class M11_MaxArea {
     public static void main(String[] args) {
         int[] a = new int[]{1,8,6,2,5,4,8,3,7};
-        System.out.println(new Medium11().maxArea2(a));
+        System.out.println(new M11_MaxArea().maxArea2(a));
     }
 
     public int maxArea(int[] height) {

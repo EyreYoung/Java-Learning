@@ -46,10 +46,10 @@ package com.leetcode.Medium;
 // nums 中的每个值都 独一无二
 // 题目数据保证 nums 在预先未知的某个下标上进行了旋转
 // -10^4 <= target <= 10^4
-public class Medium33 {
+public class M33_Search {
 
     public static void main(String[] args) {
-        System.out.println(new Medium33().search(new int[]{4,5,6,7,0,1,2}, 1));
+        System.out.println(new M33_Search().search(new int[]{4,5,6,7,0,1,2}, 1));
     }
 
     public int search(int[] nums, int target) {

@@ -6,9 +6,9 @@ package com.leetcode.Medium;
  * @Copyright (c) 2021, Lianjia Group All Rights Reserved.
  * @since 2021/10/12
  */
-public class Medium29 {
+public class M29_Divide {
     public static void main(String[] args) {
-        System.out.println(new Medium29().divide(-2147483648, -1));
+        System.out.println(new M29_Divide().divide(-2147483648, -1));
     }
     public int divide(int dividend, int divisor) {
         if (dividend == 0) return 0;

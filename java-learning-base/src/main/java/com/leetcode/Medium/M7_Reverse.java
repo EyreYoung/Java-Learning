@@ -51,10 +51,10 @@ package com.leetcode.Medium;
 //
 // Related Topics 数学 👍 3410 👎 0
 
-public class Medium7 {
+public class M7_Reverse {
 
     public static void main(String[] args) {
-        System.out.println(new Medium7().reverse(-2147483648));
+        System.out.println(new M7_Reverse().reverse(-2147483648));
     }
 
     public int reverse(int x) {

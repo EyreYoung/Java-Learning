@@ -58,7 +58,7 @@ import java.util.*;
 //
 // Related Topics 栈 树 深度优先搜索 设计 队列 迭代器 👍 418 👎 0
 
-public class Medium341 {
+public class M341_NestedIterator {
 
     public static void main(String[] args) {
         List<NestedInteger> nestedInteger = Collections.singletonList(

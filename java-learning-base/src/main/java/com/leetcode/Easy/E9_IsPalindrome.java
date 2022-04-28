@@ -53,10 +53,10 @@ package com.leetcode.Easy;
 // 进阶：你能不将整数转为字符串来解决这个问题吗？
 // Related Topics 数学 👍 1841 👎 0
 
-public class Easy9 {
+public class E9_IsPalindrome {
 
     public static void main(String[] args) {
-        System.out.println(new Easy9().isPalindrome(1234567899));
+        System.out.println(new E9_IsPalindrome().isPalindrome(1234567899));
     }
 
     public boolean isPalindrome(int x) {

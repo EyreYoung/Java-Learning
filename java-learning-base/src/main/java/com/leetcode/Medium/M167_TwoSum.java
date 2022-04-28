@@ -53,10 +53,10 @@ import java.util.Arrays;
 // 仅存在一个有效答案
 //
 // Related Topics 数组 双指针 二分查找 👍 771 👎 0
-public class M167TwoSum {
+public class M167_TwoSum {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new M167TwoSum().twoSum(
+        System.out.println(Arrays.toString(new M167_TwoSum().twoSum(
                 new int[]{2, 7, 11, 15}, 9
         )));
     }

@@ -45,12 +45,12 @@ import java.util.Stack;
 //
 // Related Topics 栈 数组 模拟 👍 227 👎 0
 
-public class Medium946 {
+public class M946_ValidateStackSequences {
 
     public static void main(String[] args) {
         int[] pushed = new int[]{1,2,3,4,5};
         int[] popped = new int[]{4,3,5,2,1};
-        System.out.println(new Medium946().validateStackSequences(pushed, popped));
+        System.out.println(new M946_ValidateStackSequences().validateStackSequences(pushed, popped));
     }
 
     public boolean validateStackSequences(int[] pushed, int[] popped) {

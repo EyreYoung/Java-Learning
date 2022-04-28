@@ -88,10 +88,10 @@ package com.leetcode.Medium;
 //
 // Related Topics 字符串 👍 1355 👎 0
 
-public class Medium8 {
+public class M8_MyAtoi {
 
     public static void main(String[] args) {
-        System.out.println(new Medium8().myAtoi("0000000000012345678"));
+        System.out.println(new M8_MyAtoi().myAtoi("0000000000012345678"));
     }
 
     public int myAtoi(String s) {

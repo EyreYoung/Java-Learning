@@ -8,9 +8,9 @@ import java.util.*;
  * @Copyright (c) 2021, Lianjia Group All Rights Reserved.
  * @since 2021/10/11
  */
-public class Hard273 {
+public class H273_NumberToWords {
     public static void main(String[] args) {
-        System.out.println(new Hard273().numberToWords(10000001));
+        System.out.println(new H273_NumberToWords().numberToWords(10000001));
     }
 
     public String numberToWords(int num) {
