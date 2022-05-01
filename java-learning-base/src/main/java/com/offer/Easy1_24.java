@@ -1,6 +1,6 @@
 package com.offer;
 
-import java.util.List;
+import com.leetcode.ListNode;
 
 /**
  * @author slowdive
@@ -92,17 +92,6 @@ public class Easy1_24 {
         }
         p.next = pre;
         return p;
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {val = x;}
-
-        @Override
-        public String toString() {
-            return val + " -> " + next;
-        }
     }
 
 }

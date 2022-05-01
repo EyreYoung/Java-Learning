@@ -41,6 +41,8 @@ package com.leetcode.Medium;
 // 进阶：你能尝试使用一趟扫描实现吗？
 // Related Topics 链表 双指针 👍 2007 👎 0
 
+import com.leetcode.ListNode;
+
 /**
  * 删除链表的倒数第N个结点
  */
@@ -81,15 +83,4 @@ public class M19_RemoveNthFromEnd {
         return head;
     }
 
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-        @Override
-        public String toString() {
-            return val + " -> " + next;
-        }
-    }
 }
