@@ -41,7 +41,8 @@ package com.leetcode.Medium;
 // Related Topics 链表 👍 1255 👎 0
 public class M92_ReverseBetween {
 
-    public static void main(String[] args) {ListNode head = new ListNode(1);
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
