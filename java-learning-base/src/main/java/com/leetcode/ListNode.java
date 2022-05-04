@@ -1,5 +1,8 @@
 package com.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ListNode {
 
     private int val;
@@ -18,8 +21,16 @@ public class ListNode {
         this.next = next;
     }
 
+    public static Set<ListNode> set = new HashSet<>();
+
+    public static void clearSet() {
+        set.clear();
+    }
+
     @Override
     public String toString() {
+        if (set.contains(this)) return val + "(重复)";
+        set.add(this);
         return val + " -> " + next;
     }
 }
