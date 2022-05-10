@@ -79,7 +79,7 @@ import com.leetcode.ListNode;
 // 进阶：你能否设计一个时间复杂度 O(n) 、仅用 O(1) 内存的解决方案？
 // Related Topics 哈希表 链表 双指针 👍 208 👎 0
 
-public class INT0207_GetIntersectionNode {
+public class E160_GetIntersectionNode {
 
     public static void main(String[] args) {
 
