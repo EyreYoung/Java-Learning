@@ -14,8 +14,7 @@ public class ProducerTest {
 
     public static void main(String[] args) {
 
-        Producer<String, String> producer = new KafkaFactory<String, String>().getProducer();
-        try {
+        try (Producer<String, String> producer = new KafkaFactory<String, String>().getProducer()) {
             for (int i = 0; i < 100000; i++) {
                 String msg = "Message " + i;
                 producer.send(new ProducerRecord<>("test", msg));
@@ -23,8 +22,6 @@ public class ProducerTest {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            producer.close();
         }
     }
 }
