@@ -29,8 +29,8 @@ public class ListNode {
 
     @Override
     public String toString() {
-        if (set.contains(this)) return val + "(重复)";
-        set.add(this);
+//        if (set.contains(this)) return val + "(重复)";
+//        set.add(this);
         return val + " -> " + next;
     }
 }
