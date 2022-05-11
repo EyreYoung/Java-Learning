@@ -62,12 +62,16 @@ public class E206_ReverseList {
     }
     public static ListNode reverseList(ListNode head) {
         if (head == null) return null;
+
+        // p从head开始
         ListNode pre = null;
         ListNode p = head;
         ListNode post = p.next;
         while (post != null) {
+            // p的指针指向pre
             p.next = pre;
 
+            // 切换 pre p post 的位置
             ListNode tmp = p;
             p = post;
             post = post.next;
