@@ -36,6 +36,7 @@ public class JobsProxy {
                 if (method.getName().equals("dance")) {
                     log.debug("代理模式:即将dance");
                     method.invoke(jobs, objects);
+                    log.debug("代理模式:dance结束");
                 }
                 return null;
             }
