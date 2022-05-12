@@ -8,7 +8,7 @@ package com.leetcode;
  */
 public class TreeNode {
 
-    private int val;
+    public int val;
 
     public TreeNode left;
 
