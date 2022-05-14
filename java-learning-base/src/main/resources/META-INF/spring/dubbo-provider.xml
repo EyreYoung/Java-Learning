@@ -18,7 +18,7 @@
     <!--<dubbo:registry address="N/A"/>-->
     <dubbo:registry address="zookeeper://localhost:2181" check="false" />
 
-    <!--当前服务发布所依赖的协议；webservice、thrift、hessain、http-->
+    <!--当前服务发布所依赖的协议；webservice、thrift、hessian、http-->
     <dubbo:protocol name="dubbo" port="20880"/>
 
     <!--服务发布的配置，需要暴露的服务接口-->
