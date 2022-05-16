@@ -1,5 +1,7 @@
 package com.offer;
 
+import com.google.common.base.Stopwatch;
+
 /**
  * @author slowdive
  * @summary 求平方根
@@ -45,7 +47,14 @@ package com.offer;
 public class Easy2_72 {
 
     public static void main(String[] args) {
-        System.out.println(new Easy2_72().mySqrt(2147483647));
+        Stopwatch sw = Stopwatch.createStarted();
+        System.out.println(new Easy2_72().mySqrt(900000000));
+        sw.stop();
+        System.out.println(sw);
+        sw.reset();
+        sw.start();
+        System.out.println(new Easy2_72().mySqrt((float) 900000000));
+        System.out.println(sw);
     }
 
     public int mySqrt(int x) {
@@ -68,6 +77,20 @@ public class Easy2_72 {
             }
         }
         return (int) floor;
+    }
+
+    // 牛顿迭代法
+    public float mySqrt(float x) {
+        if (x == 0) return 0;
+        // 迭代值xi
+        float xi = x;
+        while (true) {
+            if ((int) xi * (int) xi == x) {
+                return (int) xi;
+            }
+            // 迭代函数（推导得出）
+            xi = (x / xi + xi) / 2;
+        }
     }
 
 }
