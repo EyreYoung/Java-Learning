@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class ListNode {
 
-    private int val;
+    public int val;
 
     public ListNode next;
 
