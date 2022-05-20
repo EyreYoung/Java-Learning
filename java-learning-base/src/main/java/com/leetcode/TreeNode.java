@@ -28,8 +28,7 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return "TreeNode{" +
-                "val=" + val +
+        return "{" + val +
                 ", left=" + left +
                 ", right=" + right +
                 '}';
