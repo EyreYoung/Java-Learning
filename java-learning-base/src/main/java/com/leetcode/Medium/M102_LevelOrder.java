@@ -58,7 +58,7 @@ public class M102_LevelOrder {
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> ret = new ArrayList<>();
-        ret.add(Arrays.asList(root.val));
+        ret.add(Collections.singletonList(root.val));
         Queue<TreeNode> queue = new LinkedList<>();
         Queue<TreeNode> queue2 = new LinkedList<>();
         queue.add(root);
