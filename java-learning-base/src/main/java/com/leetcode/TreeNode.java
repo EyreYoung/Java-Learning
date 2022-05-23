@@ -26,6 +26,24 @@ public class TreeNode {
         this.right = right;
     }
 
+    public TreeNode(Integer... vars) {
+        TreeNode root = newTree(0, vars);
+        if (root == null) return;
+        this.val = root.val;
+        this.left = root.left;
+        this.right = root.right;
+    }
+
+    private static TreeNode newTree(int index, Integer... vars) {
+        if (index >= vars.length || vars[index] == null) return null;
+
+        TreeNode node = new TreeNode(vars[index]);
+        node.left = newTree(2 * index + 1, vars);
+        node.right = newTree(2 * index + 2, vars);
+
+        return node;
+    }
+
     @Override
     public String toString() {
         return "{" + val +
