@@ -63,8 +63,6 @@ public class M114_Flatten {
     public void flatten(TreeNode root) {
         // 遍历指针
         TreeNode cur = root;
-        // 下一个要遍历的位置
-        TreeNode next;
         while (cur != null) {
             // 如果cur左子树不为空
             if (cur.left != null) {
