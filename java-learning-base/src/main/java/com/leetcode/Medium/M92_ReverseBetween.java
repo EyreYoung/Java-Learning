@@ -60,11 +60,13 @@ public class M92_ReverseBetween {
         int i = left;
         ListNode p = head;
         ListNode pre = null;
+        // 先把p走到要反转的初始节点处
         while (i > 1) {
             pre = p;
             p = p.next;
             i--;
         }
+        // 如果从最开头开始，那就免得调整pre的指向了
         if (pre == null) {
             return reverseListByN(p, right - left);
         }
@@ -78,8 +80,13 @@ public class M92_ReverseBetween {
         ListNode p = head;
         ListNode post = p.next;
         while (x > 0) {
+            // pre -> p 反转为 pre <- p
             p.next = pre;
 
+            // 整体后移一位
+            // pre -> p -> post
+            // 变为
+            // 原pre <- 原p｜现pre -> 原post｜现p -> 现post
             ListNode tmp = p;
             p = post;
             post = post.next;

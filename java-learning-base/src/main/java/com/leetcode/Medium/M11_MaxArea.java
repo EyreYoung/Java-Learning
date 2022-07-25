@@ -75,7 +75,7 @@ public class M11_MaxArea {
         while(i < j) {
             area = (j - i) * Math.min(height[i], height[j]);
             max = Math.max(max, area);
-            // 从高度更低的一边缩减 因为低的那边决定了
+            // 从高度更低的一边缩减 移动短板有可能导致面积变大 移动长板面积只会更小
             if (height[i] > height[j]) j--;
             else i++;
         }

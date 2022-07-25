@@ -54,7 +54,6 @@ public class M540_SingleNonDuplicate {
         // 二分查找
         while (left < right) {
             mid = (left + right) / 2;
-            boolean flag;
             // 如果mid是偶数位
             if (mid % 2 == 0) {
                 // 如果其与右边的数字一样 -> 单个的数字在mid右边
