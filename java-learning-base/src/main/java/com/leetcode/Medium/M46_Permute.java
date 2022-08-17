@@ -53,10 +53,35 @@ public class M46_Permute {
     public List<List<Integer>> permute(int[] nums) {
         if (nums.length == 1) return Collections.singletonList(Collections.singletonList(nums[0]));
         List<List<Integer>> ret = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            continue;
-        }
+
+        // 元素是否已被选择过
+        boolean[] used = new boolean[nums.length];
+        // 存放选择
+        List<Integer> temp = new ArrayList<>();
+        dfs(nums, 0, ret, temp, used);
         return ret;
+    }
+
+    static void dfs(int[] nums, int depth, List<List<Integer>> ret, List<Integer> temp, boolean[] used) {
+        // 排列数量够了之后，将选择放到最终结果里
+        if (depth > nums.length - 1) {
+            ret.add(new ArrayList<>(temp));
+            return;
+        }
+        // 对每个还没选择过的元素遍历
+        for (int i = 0; i < nums.length; i++) {
+            if (!used[i]) {
+                // 先选择一个
+                temp.add(nums[i]);
+                // 标记为已使用，从而后续不会再用
+                used[i] = true;
+                // 递归，继续往下一层选
+                dfs(nums, depth + 1, ret, temp, used);
+                // 下一层选完了，对这一层的选择进行回退
+                used[i] = false;
+                temp.remove(temp.size() - 1);
+            }
+        }
     }
 
 }

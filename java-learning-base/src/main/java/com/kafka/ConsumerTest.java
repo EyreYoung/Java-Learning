@@ -7,6 +7,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.WakeupException;
 
 import java.time.Duration;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -23,6 +24,11 @@ import java.util.regex.Pattern;
 public class ConsumerTest {
     public static void main(String[] args) {
         Consumer<String, String> consumer = new KafkaFactory<String, String>().getConsumer();
+        /**
+         * {@link KafkaConsumer#subscribe(Collection, ConsumerRebalanceListener)}
+         * 调用了{@link KafkaConsumer#acquireAndEnsureOpen()}来保证只能单线程调用Consumer
+         * 因为并发调用Consumer不安全
+         */
         consumer.subscribe(Lists.newArrayList("test"));
         // 也可以传入一个正则表达式 来匹配多个主题
         // 如果出现了新的topic符合正则表达式 立即触发分区再均衡 从而能够读取新topic
