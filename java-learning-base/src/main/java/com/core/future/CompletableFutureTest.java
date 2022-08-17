@@ -34,7 +34,7 @@ public class CompletableFutureTest {
         System.out.println(m.get("two"));
 
         CompletableFuture<String> future1 = CompletableFuture
-                .supplyAsync(() -> supply1("s"));
+                .supplyAsync(() -> supply1("sa"));
         CompletableFuture<String> future2 = CompletableFuture
                 .supplyAsync(() -> supply2("ss"))
                 .exceptionally(e -> {
