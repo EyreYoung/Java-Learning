@@ -66,14 +66,18 @@ public class M148_SortList {
         ListNode post;
         while (p != null) {
             post = p.next;
+            // 发现逆序的时候，找到合适的位置把节点移过去
             if (p.val < pre.val) {
                 ListNode cur = head;
                 ListNode curPre = null;
+                // 找刚好大于p值的前一个节点
                 while (cur != null) {
+                    // 小于p的跳过
                     if (cur.val <= p.val) {
                         curPre = cur;
                         cur = cur.next;
                     } else {
+                        // 移动
                         pre.next = p.next;
                         if (curPre == null) {
                             head = p;
