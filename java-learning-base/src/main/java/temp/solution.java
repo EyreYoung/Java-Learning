@@ -11,9 +11,6 @@ import java.util.Arrays;
 public class solution {
 
     public static void main(String[] args) {
-        String s = "sa";
-        System.out.println(s.intern());
-
         int[] nums = new int[]{3, 1, 4, 7, 2, 9, 4};
         quickSort(nums, 0 , nums.length - 1);
         System.out.println(Arrays.toString(nums));
