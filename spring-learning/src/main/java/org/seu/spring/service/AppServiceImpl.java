@@ -25,4 +25,8 @@ public class AppServiceImpl implements AppService {
         return 111;
     }
 
+    public String str(String s) {
+        return s + ", ok.";
+    }
+
 }

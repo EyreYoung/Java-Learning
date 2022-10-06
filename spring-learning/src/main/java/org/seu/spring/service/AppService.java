@@ -14,4 +14,6 @@ public interface AppService {
 
     Integer app();
 
+    String str(String s);
+
 }
