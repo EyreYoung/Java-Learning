@@ -19,7 +19,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.version>5.3.22</spring.version>
+        <spring.version>5.3.23</spring.version>
         <swagger.version>3.0.0</swagger.version>
     </properties>
 
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
-            <version>3.1.2</version>
+            <version>3.1.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
-            <version>3.4.21</version>
+            <version>3.4.23</version>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>3.2.1</version>
+            <version>3.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -106,7 +106,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.77.Final</version>
+            <version>4.1.82.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
@@ -126,7 +126,7 @@
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-core</artifactId>
-            <version>1.8.4</version>
+            <version>1.8.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
