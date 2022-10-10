@@ -14,16 +14,16 @@ public class ReactorTest {
         // 创建Flux序列 声明数据流
         Flux<Integer> integerFlux = Flux.just(1, 2, 3, 5);
         // 订阅Flux序列 只有订阅后才会触发数据流
-        integerFlux.subscribe(i -> log.info(String.valueOf(i)));
+        integerFlux.subscribe(i -> log.info("Flux-just-subscribe: " + i));
 
         Flux<String> stringFlux = Flux.just("Hello", "YYD");
         stringFlux.subscribe(log::info);
 
-        Flux.fromArray(new Integer[]{1, 2, 3, 4}).subscribe(i -> log.info(String.valueOf(i)));
+        Flux.fromArray(new Integer[]{1, 2, 3, 4}).subscribe(i -> log.info("Flux-fromArray: " + i));
 
-        Flux.fromIterable(Arrays.asList(1, 2, 3, 4)).subscribe(i -> log.info(String.valueOf(i)));
+        Flux.fromIterable(Arrays.asList(1, 2, 3, 4)).subscribe(i -> log.info("Flux-fromIterable: " + i));
 
-        Flux.fromStream(Stream.of(1, 2, 3, 4)).subscribe(i -> log.info(String.valueOf(i)));
+        Flux.fromStream(Stream.of(1, 2, 3, 4)).subscribe(i -> log.info("Flux-fromStream: " + i));
 
     }
 
