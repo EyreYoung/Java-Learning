@@ -61,7 +61,28 @@ public class ReactorTest {
             fluxSink.complete();
         }).subscribe(i -> log.info("Flux-create: " + i));
 
+        Flux.range(1, 1000).takeWhile(i -> i % 10 == 0).subscribe(i -> log.info("Flux-takeWhile: " + i));
 
+        Flux.range(1, 100).reduce((x, y) -> x + y).subscribe(i -> log.info("Flux-reduce: " + i));
+        Flux.range(1, 10).reduceWith(() -> 1, (x, y) -> x * y).subscribe(i -> log.info("Flux-reduceWith: " + i));
+
+        Flux.merge(
+                Flux.interval(
+                        Duration.of(0, ChronoUnit.SECONDS),
+                        Duration.of(3, ChronoUnit.SECONDS)).take(5),
+                Flux.interval(
+                        Duration.of(1, ChronoUnit.SECONDS),
+                        Duration.of(3, ChronoUnit.SECONDS)).take(5))
+                .toStream().forEach(i -> log.info("Flux-merge: " + i));
+
+        Flux.mergeSequential(
+                        Flux.interval(
+                                Duration.of(0, ChronoUnit.SECONDS),
+                                Duration.of(3, ChronoUnit.SECONDS)).take(5),
+                        Flux.interval(
+                                Duration.of(1, ChronoUnit.SECONDS),
+                                Duration.of(3, ChronoUnit.SECONDS)).take(5))
+                .toStream().forEach(i -> log.info("Flux-mergeSequential: " + i));
 
         log.info("---流式数据处理---");
         ReactorTest reactorTest = new ReactorTest();
@@ -74,7 +95,6 @@ public class ReactorTest {
         Mono<ClientUser> data = Mono.just(new ClientUser("mono.com", "Mono"));
         Mono<Object> noData = Mono.empty();
         data.subscribe(i -> log.info("Mono - " + i));
-
 
         sw.stop();
         log.info(sw.toString());
