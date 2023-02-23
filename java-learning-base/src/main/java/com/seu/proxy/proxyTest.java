@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j(topic = "proxyTest")
 public class proxyTest {
     public static void main(String[] args) {
+
+        log.info("FYI: https://learn.lianglianglee.com/专栏/Dubbo源码解读与实战-完/08%20%20代理模式与常见实现.md");
+
         // 静态代理测试
         IUserDao target = new UserDao();
         IUserDao proxy = new UserDaoProxy(target);
