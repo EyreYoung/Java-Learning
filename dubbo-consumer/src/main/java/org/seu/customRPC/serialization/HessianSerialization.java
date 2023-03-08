@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * 基于Hessian序列化方式对{@code org.seu.customRPC.serialized.Serialization}的实现
+ * 基于Hessian序列化方式对{@link Serialization}的实现
  */
 public class HessianSerialization implements Serialization {
 
