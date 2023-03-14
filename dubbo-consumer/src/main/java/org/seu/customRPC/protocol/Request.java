@@ -20,4 +20,13 @@ public class Request implements Serializable {
 
     private Object[] args; // 请求方法的参数
 
+    public Request(String serviceName, String methodName, Object[] args) {
+        this.serviceName = serviceName;
+        this.methodName = methodName;
+        this.args = args;
+        this.argTypes = new Class[argTypes.length];
+        for (int i = 0; i < args.length; i++) {
+            argTypes[i] = args[i].getClass();
+        }
+    }
 }
