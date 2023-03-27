@@ -28,6 +28,7 @@
         <module>java-learning-base</module>
         <module>dubbo-consumer</module>
         <module>spring-learning</module>
+        <module>email-spring-starter</module>
     </modules>
 
     <dependencies>
