@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @Copyright (c) 2022, Lianjia Group All Rights Reserved.
  * @since 2022/8/17
  */
-public class solution {
+public class QuickSort {
 
     public static void main(String[] args) {
         int[] nums = new int[]{3, 1, 4, 7, 2, 9, 4};

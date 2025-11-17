@@ -72,10 +72,9 @@ public class E206_ReverseList {
             p.next = pre;
 
             // 切换 pre p post 的位置
-            ListNode tmp = p;
+            pre = p;
             p = post;
             post = post.next;
-            pre = tmp;
 
         }
         p.next = pre;
