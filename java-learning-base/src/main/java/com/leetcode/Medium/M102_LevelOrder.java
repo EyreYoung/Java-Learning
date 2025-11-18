@@ -50,31 +50,30 @@ import java.util.stream.Collectors;
 public class M102_LevelOrder {
 
     public static void main(String[] args) {
-        System.out.println(new M102_LevelOrder().levelOrder(new TreeNode(3,
+        System.out.println(levelOrder(new TreeNode(3,
                 new TreeNode(9, null, null), new TreeNode(20,
                 new TreeNode(15, null, null), new TreeNode(7, null, null)))));
+        System.out.println(levelOrder(new TreeNode(3,9,20,null,null,15,7)));
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public static List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> ret = new ArrayList<>();
         ret.add(Collections.singletonList(root.val));
         Queue<TreeNode> queue = new LinkedList<>();
-        Queue<TreeNode> queue2 = new LinkedList<>();
-        queue.add(root);
+        queue.offer(root);
         while (true) {
-            while (!queue.isEmpty()) {
-                TreeNode l = queue.peek();
-                if (l.left != null) queue2.add(l.left);
-                if (l.right != null) queue2.add(l.right);
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode p =  queue.peek();
+                if (p.left != null) queue.add(p.left);
+                if (p.right != null) queue.add(p.right);
                 queue.poll();
             }
-            queue = queue2;
             if (queue.isEmpty()) {
                 break;
             }
             ret.add(queue.stream().map(i -> i.val).collect(Collectors.toList()));
-            queue2 = new LinkedList<>();
         }
         return ret;
     }
