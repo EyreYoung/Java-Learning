@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * @author slowdive
@@ -14,13 +15,13 @@ import java.sql.DriverManager;
 
 public class ThreadLocalTest {
 
-    private static ThreadLocal<Connection> connectionHolder = new ThreadLocal<Connection>() {
-        @SneakyThrows
-        @Override
-        protected Connection initialValue() {
+    private static ThreadLocal<Connection> connectionHolder = ThreadLocal.withInitial(() -> {
+        try {
             return DriverManager.getConnection("");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-    };
+    });
 
     public static Connection getConnection() {
         return connectionHolder.get();
