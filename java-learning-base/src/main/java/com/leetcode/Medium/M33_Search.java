@@ -49,7 +49,8 @@ package com.leetcode.Medium;
 public class M33_Search {
 
     public static void main(String[] args) {
-        System.out.println(new M33_Search().search(new int[]{4,5,6,7,0,1,2}, 1));
+//        System.out.println(new M33_Search().search(new int[]{4,5,6,7,0,1,2}, 1));
+        System.out.println(new M33_Search().search2(new int[]{3,1}, 0));
     }
 
     public int search(int[] nums, int target) {
@@ -79,8 +80,39 @@ public class M33_Search {
     public int search2(int[] nums, int target) {
         if (target == nums[0]) return 0;
         if (target == nums[nums.length - 1]) return nums.length - 1;
-        int i = 0, j = nums.length;
+        if (target < nums[0] && target > nums[nums.length - 1]) return -1;
 
+        int l = 0, r = nums.length - 1, mid;
+        while (l < r) {
+            if (target == nums[l]) return l;
+            if (target == nums[r]) return r;
+            mid = (l + r) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[l] < nums[r]) {
+                if (target > nums[mid]) {
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            } else {
+                if (nums[mid] > nums[l]) {
+                    if (nums[l] < target && target < nums[mid]) {
+                        r = mid - 1;
+                    } else {
+                        l = mid + 1;
+                    }
+                } else if (nums[mid] < nums[r]) {
+                    if (nums[mid] < target && target < nums[l]) {
+                        l = mid + 1;
+                    } else {
+                        r = mid - 1;
+                    }
+                }
+            }
+        }
+        if (target == nums[l]) {
+            return l;
+        }
         return -1;
     }
 }

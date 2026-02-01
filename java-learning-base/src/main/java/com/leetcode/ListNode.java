@@ -21,6 +21,17 @@ public class ListNode {
         this.next = next;
     }
 
+    public ListNode(Integer... vals) {
+        ListNode cur = new ListNode(vals[0]);
+        ListNode head = cur;
+        for (int i = 1; i < vals.length; i++) {
+            cur.next = new ListNode(vals[i]);
+            cur = cur.next;
+        }
+        this.val = head.val;
+        this.next = head.next;
+    }
+
     public static Set<ListNode> set = new HashSet<>();
 
     public static void clearSet() {
@@ -29,8 +40,8 @@ public class ListNode {
 
     @Override
     public String toString() {
-        if (set.contains(this)) return val + "(重复)";
-        set.add(this);
+//        if (set.contains(this)) return val + "(重复)";
+//        set.add(this);
         return val + " -> " + next;
     }
 }

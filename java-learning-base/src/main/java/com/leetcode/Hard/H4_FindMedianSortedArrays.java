@@ -48,7 +48,7 @@ package com.leetcode.Hard;
 public class H4_FindMedianSortedArrays {
 
     public static void main(String[] args) {
-        System.out.println(findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4, 5, 6}));
+        System.out.println(findMedianSortedArrays(new int[]{1}, new int[]{3, 4, 5, 6}));
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {

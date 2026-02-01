@@ -57,13 +57,12 @@ import java.util.LinkedList;
 public class M143_ReorderList {
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1,
-                new ListNode(2,
-                        new ListNode(3,
-                                new ListNode(4,
-                                        new ListNode(5, new ListNode(6))))));
-        reorderList(head);
+        ListNode head = new ListNode(1,2,3,4,5,6,7,8,9,10);
+        ListNode head1 = new ListNode(1,2,3,4,5,6,7,8,9);
+        reorderList2(head);
+        reorderList2(head1);
         System.out.println(head);
+        System.out.println(head1);
     }
 
     public static void reorderList(ListNode head) {
@@ -91,7 +90,41 @@ public class M143_ReorderList {
     }
 
     public static void reorderList2(ListNode head) {
-
+        // 快慢指针找到中点（注意奇偶数）
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // 从中点开始，反转后半部分的链表
+        ListNode cur = slow;
+        ListNode post = cur.next;
+        cur.next = null;
+        ListNode temp;
+        while (post != null) {
+            temp = post.next;
+            post.next = cur;
+            cur = post;
+            post = temp;
+        }
+        // 偶数：
+        // head = "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null"
+        // cur = "10 -> 9 -> 8 -> 7 -> 6 -> null"
+        // 奇数：
+        // head = "1 -> 2 -> 3 -> 4 -> 5 -> null"
+        // cur  = "9 -> 8 -> 7 -> 6 -> 5 -> null"
+        // 把前半部分和反转过的后半部分交叉起来
+        ListNode i = head, j = cur;
+        ListNode iTemp, jTemp;
+        // 最后一个节点可以不管，没问题的
+        while (i.next != null && j.next != null) {
+            iTemp = i.next;
+            jTemp = j.next;
+            i.next = j;
+            j.next = iTemp;
+            i = iTemp;
+            j = jTemp;
+        }
     }
 
 }
