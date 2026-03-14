@@ -58,7 +58,8 @@ public class M39_CombinationSum {
         System.out.println(new M39_CombinationSum().combinationSum(new int[]{2, 3, 6, 7}, 7));
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        dfs(candidates, target, 0);
+//        dfs(candidates, target, 0);
+        dfs(candidates, target, new ArrayList<>(), 0);
         return ret;
     }
     private LinkedList<Integer> seq = new LinkedList<>(); // 存放当前序列
@@ -88,6 +89,21 @@ public class M39_CombinationSum {
                 dfs(candidates, target - candidates[i], i);
                 // 状态回退 撤销刚才选的元素
                 seq.removeLast();
+            }
+        }
+    }
+
+    public void dfs (int[] candidates, int target, List<Integer> temp, int index) {
+        for(int i = index; i < candidates.length; i++) {
+            if(candidates[i] == target) {
+                temp.add(candidates[i]);
+                ret.add(new ArrayList<>(temp));
+                temp.remove(temp.size() - 1);
+                return;
+            } else if (candidates[i] < target) {
+                temp.add(candidates[i]);
+                dfs(candidates, target - candidates[i], temp, i);
+                temp.remove(temp.size() - 1);
             }
         }
     }

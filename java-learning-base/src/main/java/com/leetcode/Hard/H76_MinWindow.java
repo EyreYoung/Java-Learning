@@ -60,6 +60,8 @@ public class H76_MinWindow {
 
     public static void main(String[] args) {
         System.out.println(minWindow("a", "b"));
+        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
+        System.out.println(minWindow("a", "aa"));
     }
 
     public static String minWindow(String s, String t) {
