@@ -54,7 +54,7 @@ public class M93_RestoreIpAddresses {
             if (start == s.length()) {       // 字符串也刚好用完，合法结果
                 ret.add(String.join(".", pre));
             }
-            return;                          // 不管用没用完都要 return，4 段就是上限
+            return; // 不管用没用完都要 return，4 段就是上限
         }
         // 每段尝试截 1~3 个字符
         for (int i = 1; i <= 3; i++) {
