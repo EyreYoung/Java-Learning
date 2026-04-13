@@ -51,18 +51,25 @@ public class E268_MissingNumber {
 
     public static int missingNumber(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
+            // 目标是把值 x 放到下标 x 的位置上。
+            // 但如果 nums[i] == nums.length，说明这个数没有对应下标，先跳过。
+            // 如果 nums[i] == i，说明当前位置已经放对了，也不需要处理。
             if (nums[i] != nums.length && nums[i] != i) {
+                // 把当前数字 nums[i] 交换到它应该去的位置 nums[nums[i]]。
                 int temp = nums[nums[i]];
                 nums[nums[i]] = nums[i];
                 nums[i] = temp;
+                // 交换后当前位置来了一个新数字，需要重新检查一次。
                 i--;
             }
         }
         for (int i = 0; i < nums.length; i++) {
+            // 第一处 nums[i] != i 的位置，就是缺失的数字 i。
             if (nums[i] != i) {
                 return i;
             }
         }
+        // 如果 0 ~ n-1 都在正确位置上，缺失的就是 n。
         return nums.length;
     }
 

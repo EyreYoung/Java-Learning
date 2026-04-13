@@ -49,9 +49,11 @@ public class M79_Exist {
     }
 
     public static boolean exist(char[][] board, String word) {
+        // used[i][j] 表示当前这条搜索路径里，这个格子是否已经被使用过。
         boolean[][] used = new boolean[board.length][board[0].length];
         for(int i = 0; i < board.length; i++) {
             for(int j = 0; j < board[0].length; j++) {
+                // 以每个格子作为起点，尝试能不能搜出目标单词。
                 if(dfs(board, used, i, j, word, 0)) {
                     return true;
                 }
@@ -61,12 +63,17 @@ public class M79_Exist {
     }
 
     public static boolean dfs(char[][] board, boolean[][] used, int x, int y, String word, int index) {
+        // 同一个格子在一条路径里不能重复使用。
         if(used[x][y]) return false;
         if(board[x][y] == word.charAt(index)) {
+            // 当前字符已经匹配到单词最后一位，说明整条路径成立。
             if(index == word.length() - 1) return true;
+            // 准备去匹配下一个字符。
             index++;
+            // 先标记当前格子已使用，避免后续搜索又绕回来。
             used[x][y] = true;
             boolean b = false;
+            // 按上、下、左、右四个方向继续搜索。
             if(x > 0) {
                 b = dfs(board, used, x - 1, y, word, index);
                 if(b) return true;
@@ -83,6 +90,7 @@ public class M79_Exist {
                 b = dfs(board, used, x, y + 1, word, index);
                 if(b) return true;
             }
+            // 四个方向都走不通，回溯时撤销当前格子的使用状态。
             used[x][y] = false;
         }
         return false;
