@@ -6,17 +6,12 @@
         <groupId>org.seu</groupId>
         <artifactId>Java-Learning</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>spring-learning</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-learning</name>
     <description>spring-learning</description>
-
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
 
