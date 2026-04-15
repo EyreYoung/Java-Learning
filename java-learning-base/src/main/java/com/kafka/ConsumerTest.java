@@ -74,13 +74,8 @@ public class ConsumerTest {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
 
             for (ConsumerRecord<String, String> record : records) {
-                log.info("offset = {}, partition = {}, key = {}, value = {}",
+                log.debug("offset = {}, partition = {}, key = {}, value = {}",
                         record.offset(), record.partition(), record.key(), record.value());
-            }
-            try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
             }
 
             consumer.commitSync();

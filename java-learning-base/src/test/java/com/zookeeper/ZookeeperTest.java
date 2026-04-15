@@ -11,13 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
-/**
- * @author slowdive
- * @summary
- * @Copyright (c) 2022, Lianjia Group All Rights Reserved.
- * @since 2022/2/28
- */
-
 @Slf4j(topic = "ZooKeeper Java API测试用例")
 public class ZookeeperTest {
 
@@ -25,9 +18,9 @@ public class ZookeeperTest {
 
     @BeforeAll
     public static void init() throws IOException, InterruptedException {
-        final String HOST = "localhost:2181";
+        final String host = "localhost:2181";
         CountDownLatch latch = new CountDownLatch(1);
-        zk = new ZooKeeper(HOST, 5000, watchedEvent -> {
+        zk = new ZooKeeper(host, 5000, watchedEvent -> {
             if (watchedEvent.getState() == Watcher.Event.KeeperState.SyncConnected) {
                 latch.countDown();
             }
@@ -47,5 +40,4 @@ public class ZookeeperTest {
         ZooKeeper.States states = zk.getState();
         Assertions.assertTrue(states.isAlive());
     }
-
 }

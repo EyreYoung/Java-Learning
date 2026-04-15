@@ -22,7 +22,8 @@ import java.util.Properties;
 @Slf4j
 public class KafkaFactory<K, V> {
 
-    private static final String HOST = "localhost:9092";
+    private static final String HOST =
+            System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9094");
 
     private final Producer<K, V> producer;
 
@@ -56,7 +57,7 @@ public class KafkaFactory<K, V> {
         Properties consumerProperties = new Properties();
         consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST);
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "cg1");
-        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 1000);
         consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
         consumerProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 100); // 每次poll拉取数据的数量
