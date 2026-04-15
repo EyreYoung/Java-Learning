@@ -22,7 +22,6 @@ import java.util.Map;
 @ComponentScan(value = {"org.seu.annotation"})
 public class DubboConsumerConfiguration {
 
-    // 应用配置
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig config = new ApplicationConfig();
@@ -36,7 +35,6 @@ public class DubboConsumerConfiguration {
         return config;
     }
 
-    // 消费者配置
     @Bean
     public ConsumerConfig consumerConfig() {
         ConsumerConfig config = new ConsumerConfig();
@@ -44,7 +42,6 @@ public class DubboConsumerConfiguration {
         return config;
     }
 
-    // 注册中心配置
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig config = new RegistryConfig();
@@ -53,5 +50,4 @@ public class DubboConsumerConfiguration {
         config.setPort(2181);
         return config;
     }
-
 }

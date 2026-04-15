@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dubbo-consumer
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+dubbo:
+  application:
+    name: dubbo-consumer
+  registry:
+    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://localhost:2181}
+    check: false
+  consumer:
+    check: false
+    timeout: 3000

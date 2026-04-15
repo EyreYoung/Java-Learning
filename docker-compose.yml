@@ -1,0 +1,72 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: spring_learning
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  zookeeper:
+    image: zookeeper:3.8
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_MY_ID: 1
+
+  dubbo-provider:
+    build:
+      context: .
+      dockerfile: Dockerfile.provider
+    environment:
+      DUBBO_REGISTRY_ADDRESS: zookeeper://zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  dubbo-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    ports:
+      - "8081:8080"
+    environment:
+      DUBBO_REGISTRY_ADDRESS: zookeeper://zookeeper:2181
+    depends_on:
+      - zookeeper
+      - dubbo-provider
+
+  spring-learning:
+    build:
+      context: .
+      dockerfile: Dockerfile.spring-learning
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/spring_learning?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root123
+    depends_on:
+      redis:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+
+volumes:
+  redis-data:
+  mysql-data:

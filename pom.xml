@@ -23,14 +23,29 @@
         <spring.version>5.3.23</spring.version>
         <swagger.version>3.0.0</swagger.version>
         <elasticsearch.version>8.5.3</elasticsearch.version>
+        <dubbo.version>3.3.0</dubbo.version>
     </properties>
 
     <modules>
+        <module>dubbo-api</module>
         <module>java-learning-base</module>
+        <module>dubbo-provider</module>
         <module>dubbo-consumer</module>
         <module>spring-learning</module>
         <module>email-spring-starter</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -95,16 +110,6 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.9.0</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>2.6.12</version>
-        </dependency>
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.11</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>

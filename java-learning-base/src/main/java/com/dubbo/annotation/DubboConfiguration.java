@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableDubbo(scanBasePackages = "com.dubbo.annotation")
 public class DubboConfiguration {
 
-    // 服务提供者信息
     @Bean
     public ProviderConfig providerConfig() {
         ProviderConfig config = new ProviderConfig();
@@ -26,7 +25,6 @@ public class DubboConfiguration {
         return config;
     }
 
-    // 分布式应用信息
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig config = new ApplicationConfig();
@@ -35,7 +33,6 @@ public class DubboConfiguration {
         return config;
     }
 
-    // 注册中心信息
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig config = new RegistryConfig();
@@ -44,7 +41,6 @@ public class DubboConfiguration {
         return config;
     }
 
-    // 协议配置信息
     @Bean
     public ProtocolConfig protocolConfig() {
         ProtocolConfig config = new ProtocolConfig();
@@ -52,6 +48,4 @@ public class DubboConfiguration {
         config.setPort(20880);
         return config;
     }
-
-
 }

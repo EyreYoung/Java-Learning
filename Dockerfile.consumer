@@ -1,0 +1,25 @@
+# syntax=docker/dockerfile:1.7
+
+FROM maven:3-eclipse-temurin-17 AS build
+WORKDIR /app
+
+COPY pom.xml ./pom.xml
+COPY dubbo-api/pom.xml ./dubbo-api/pom.xml
+COPY dubbo-provider/pom.xml ./dubbo-provider/pom.xml
+COPY java-learning-base/pom.xml ./java-learning-base/pom.xml
+COPY dubbo-consumer/pom.xml ./dubbo-consumer/pom.xml
+COPY spring-learning/pom.xml ./spring-learning/pom.xml
+COPY email-spring-starter/pom.xml ./email-spring-starter/pom.xml
+RUN --mount=type=cache,target=/root/.m2 \
+    mvn -B dependency:go-offline -pl dubbo-consumer -am || true
+
+COPY dubbo-api/src ./dubbo-api/src
+COPY dubbo-consumer/src ./dubbo-consumer/src
+RUN --mount=type=cache,target=/root/.m2 \
+    mvn -B clean package -pl dubbo-consumer -am -DskipTests
+
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/dubbo-consumer/target/dubbo-consumer-*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-Xmx256m", "-jar", "app.jar"]
