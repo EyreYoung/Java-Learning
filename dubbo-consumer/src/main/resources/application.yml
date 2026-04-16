@@ -14,8 +14,10 @@ dubbo:
   application:
     name: dubbo-consumer
   registry:
-    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://localhost:2181}
+#    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://localhost:2181}
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://localhost:8848}
     check: false
+    register-mode: instance
   consumer:
     check: false
     timeout: 3000

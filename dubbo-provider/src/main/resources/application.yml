@@ -13,7 +13,9 @@ dubbo:
     name: dubbo
     port: 20880
   registry:
-    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://localhost:2181}
+#    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://localhost:2181}
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://localhost:8848}
     check: false
+    register-mode: instance
   provider:
     timeout: 1000
